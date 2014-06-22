@@ -1,0 +1,412 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D00023991957886E00687B12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00023981957886E00687B12 /* AppDelegate.swift */; };
+		D000239B1957886E00687B12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D000239A1957886E00687B12 /* ViewController.swift */; };
+		D000239E1957886E00687B12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D000239C1957886E00687B12 /* Main.storyboard */; };
+		D00023A01957886E00687B12 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D000239F1957886E00687B12 /* Images.xcassets */; };
+		D00023AC1957886E00687B12 /* TipprTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00023AB1957886E00687B12 /* TipprTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D00023A61957886E00687B12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D000238B1957886E00687B12 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D00023921957886E00687B12;
+			remoteInfo = Tippr;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D00023931957886E00687B12 /* Tippr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tippr.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D00023971957886E00687B12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D00023981957886E00687B12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D000239A1957886E00687B12 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D000239D1957886E00687B12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D000239F1957886E00687B12 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D00023A51957886E00687B12 /* TipprTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TipprTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D00023AA1957886E00687B12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D00023AB1957886E00687B12 /* TipprTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipprTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D00023901957886E00687B12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00023A21957886E00687B12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D000238A1957886E00687B12 = {
+			isa = PBXGroup;
+			children = (
+				D00023951957886E00687B12 /* Tippr */,
+				D00023A81957886E00687B12 /* TipprTests */,
+				D00023941957886E00687B12 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D00023941957886E00687B12 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D00023931957886E00687B12 /* Tippr.app */,
+				D00023A51957886E00687B12 /* TipprTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D00023951957886E00687B12 /* Tippr */ = {
+			isa = PBXGroup;
+			children = (
+				D00023981957886E00687B12 /* AppDelegate.swift */,
+				D000239A1957886E00687B12 /* ViewController.swift */,
+				D000239C1957886E00687B12 /* Main.storyboard */,
+				D000239F1957886E00687B12 /* Images.xcassets */,
+				D00023961957886E00687B12 /* Supporting Files */,
+			);
+			path = Tippr;
+			sourceTree = "<group>";
+		};
+		D00023961957886E00687B12 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D00023971957886E00687B12 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D00023A81957886E00687B12 /* TipprTests */ = {
+			isa = PBXGroup;
+			children = (
+				D00023AB1957886E00687B12 /* TipprTests.swift */,
+				D00023A91957886E00687B12 /* Supporting Files */,
+			);
+			path = TipprTests;
+			sourceTree = "<group>";
+		};
+		D00023A91957886E00687B12 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D00023AA1957886E00687B12 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D00023921957886E00687B12 /* Tippr */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D00023AF1957886E00687B12 /* Build configuration list for PBXNativeTarget "Tippr" */;
+			buildPhases = (
+				D000238F1957886E00687B12 /* Sources */,
+				D00023901957886E00687B12 /* Frameworks */,
+				D00023911957886E00687B12 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tippr;
+			productName = Tippr;
+			productReference = D00023931957886E00687B12 /* Tippr.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D00023A41957886E00687B12 /* TipprTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D00023B21957886E00687B12 /* Build configuration list for PBXNativeTarget "TipprTests" */;
+			buildPhases = (
+				D00023A11957886E00687B12 /* Sources */,
+				D00023A21957886E00687B12 /* Frameworks */,
+				D00023A31957886E00687B12 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D00023A71957886E00687B12 /* PBXTargetDependency */,
+			);
+			name = TipprTests;
+			productName = TipprTests;
+			productReference = D00023A51957886E00687B12 /* TipprTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D000238B1957886E00687B12 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Ross Hettel";
+				TargetAttributes = {
+					D00023921957886E00687B12 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					D00023A41957886E00687B12 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = D00023921957886E00687B12;
+					};
+				};
+			};
+			buildConfigurationList = D000238E1957886E00687B12 /* Build configuration list for PBXProject "Tippr" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D000238A1957886E00687B12;
+			productRefGroup = D00023941957886E00687B12 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D00023921957886E00687B12 /* Tippr */,
+				D00023A41957886E00687B12 /* TipprTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D00023911957886E00687B12 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D000239E1957886E00687B12 /* Main.storyboard in Resources */,
+				D00023A01957886E00687B12 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00023A31957886E00687B12 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D000238F1957886E00687B12 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D000239B1957886E00687B12 /* ViewController.swift in Sources */,
+				D00023991957886E00687B12 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00023A11957886E00687B12 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00023AC1957886E00687B12 /* TipprTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D00023A71957886E00687B12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D00023921957886E00687B12 /* Tippr */;
+			targetProxy = D00023A61957886E00687B12 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D000239C1957886E00687B12 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D000239D1957886E00687B12 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D00023AD1957886E00687B12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D00023AE1957886E00687B12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D00023B01957886E00687B12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = Tippr/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D00023B11957886E00687B12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = Tippr/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D00023B31957886E00687B12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Tippr.app/Tippr";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TipprTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		D00023B41957886E00687B12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Tippr.app/Tippr";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TipprTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D000238E1957886E00687B12 /* Build configuration list for PBXProject "Tippr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D00023AD1957886E00687B12 /* Debug */,
+				D00023AE1957886E00687B12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D00023AF1957886E00687B12 /* Build configuration list for PBXNativeTarget "Tippr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D00023B01957886E00687B12 /* Debug */,
+				D00023B11957886E00687B12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D00023B21957886E00687B12 /* Build configuration list for PBXNativeTarget "TipprTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D00023B31957886E00687B12 /* Debug */,
+				D00023B41957886E00687B12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D000238B1957886E00687B12 /* Project object */;
+}
