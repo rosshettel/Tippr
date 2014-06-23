@@ -9,33 +9,45 @@
 import Foundation
 
 class TipCalculatorModel {
-    var total: Double
-    var taxPercent: Double
-    var subtotal: Double {
-       get {
-        return total / (taxPercent + 1)
-       }
+    var subtotal: Double
+    var roundUp: Bool
+    var tipPercent: Double
+    
+    init() {
+        self.subtotal = 0.0
+        self.roundUp = false
+        self.tipPercent = 0.18
     }
     
-    init(total:Double, taxPercent:Double) {
-        self.total = total
-        self.taxPercent = taxPercent
+    func updateSubtotal(subtotal:Double) {
+        self.subtotal = subtotal
     }
     
-    func calculateTip(tipPercent:Double) -> Double {
-        return subtotal * tipPercent
+    func setRoundUp(isRoundUp:Bool) {
+        self.roundUp = isRoundUp
     }
     
-    func returnPossibleTips() -> Dictionary<Int, Double> {
-        let possibleTipsInferred = [0.15, 0.18, 0.20]
-        let possibleTipsExplicit:Double[] = [0.15, 0.18, 0.20]
-        
-        var retval = Dictionary<Int, Double>()
-        for possibleTip in possibleTipsInferred {
-            let intPercent = Int(possibleTip * 100)
-            retval[intPercent] = calculateTip(possibleTip)
+    func setTipPercent(tipPercent:Double) {
+        self.tipPercent = tipPercent
+    }
+    
+    func calculateTip() -> Double {
+        var tip = subtotal * tipPercent
+        if(roundUp) {
+            var roundedTotal = round(subtotal + tip)
+            return roundedTotal - subtotal
+        } else {
+            return tip
         }
-        return retval
+    }
+    
+    func calculateTotal() -> Double {
+        var total = subtotal + (subtotal * tipPercent)
+        if(roundUp) {
+            return round(total)
+        } else {
+            return total
+        }
     }
     
 }

@@ -9,39 +9,45 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet var totalTextField : UITextField
-    @IBOutlet var taxPctSlider : UISlider
-    @IBOutlet var taxPctLabel : UILabel
-    @IBOutlet var resultsTextView : UITextView
+    let tipCalc = TipCalculatorModel()
+    let tipAmounts = [0.15, 0.18, 0.20]
     
-    @IBAction func calculateTapped(sender : AnyObject) {
-        tipCalc.total = Double(totalTextField.text.bridgeToObjectiveC().doubleValue)
-        let possibleTips = tipCalc.returnPossibleTips()
-        var results = ""
-        
-        for (tipPct, tipValue) in possibleTips {
-            results = "\(tipPct)%: \(tipValue)\n"
-        }
-        resultsTextView.text = results
-    }
-    @IBAction func taxPercentageChanged(sender : AnyObject) {
-        tipCalc.taxPercent = Double(taxPctSlider.value) / 100
-    }
+    @IBOutlet var subtotalTextField : UITextField
+    @IBOutlet var tipLabel : UILabel
+    @IBOutlet var totalLabel : UILabel
+    @IBOutlet var selectedTipPercent : UISegmentedControl
+    @IBOutlet var roundBillToggle : UISwitch
+    
     @IBAction func viewTapped(sender : AnyObject) {
-        totalTextField.resignFirstResponder()
+        subtotalTextField.resignFirstResponder()
     }
     
-    let tipCalc = TipCalculatorModel(total: 33.25, taxPercent: 0.06)
+    @IBAction func subtotalUpdated() {
+        var subtotal: Double = subtotalTextField.text.bridgeToObjectiveC().doubleValue
+        tipCalc.updateSubtotal(subtotal)
+        refreshUI()
+    }
+    
+    @IBAction func toggleRoundUp() {
+        var isRoundUp: Bool = roundBillToggle.on
+        tipCalc.setRoundUp(isRoundUp)
+        refreshUI()
+    }
+    
+    @IBAction func switchTipAmount() {
+        var selectedTip = tipAmounts[selectedTipPercent.selectedSegmentIndex]
+        tipCalc.setTipPercent(selectedTip)
+        refreshUI()
+    }
     
     func refreshUI() {
-        totalTextField.text = String(tipCalc.total)
-        taxPctSlider.value = Float(tipCalc.taxPercent) * 100
-        taxPctLabel.text = "Tax Percentage (\(Int(taxPctSlider.value))%)"
-        resultsTextView.text = ""
+        tipLabel.text = "$" + String(tipCalc.calculateTip())
+        totalLabel.text = "$" + String(tipCalc.calculateTotal())
     }
                             
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController.navigationBar.tintColor = UIColor.blackColor()
         // Do any additional setup after loading the view, typically from a nib.
         refreshUI()
     }
