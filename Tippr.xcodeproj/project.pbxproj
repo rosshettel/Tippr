@@ -12,6 +12,7 @@
 		D000239E1957886E00687B12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D000239C1957886E00687B12 /* Main.storyboard */; };
 		D00023A01957886E00687B12 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D000239F1957886E00687B12 /* Images.xcassets */; };
 		D00023AC1957886E00687B12 /* TipprTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00023AB1957886E00687B12 /* TipprTests.swift */; };
+		D00023B6195794C700687B12 /* TipCalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00023B5195794C700687B12 /* TipCalculatorModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		D00023A51957886E00687B12 /* TipprTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TipprTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D00023AA1957886E00687B12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D00023AB1957886E00687B12 /* TipprTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipprTests.swift; sourceTree = "<group>"; };
+		D00023B5195794C700687B12 /* TipCalculatorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipCalculatorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				D00023981957886E00687B12 /* AppDelegate.swift */,
 				D000239A1957886E00687B12 /* ViewController.swift */,
 				D000239C1957886E00687B12 /* Main.storyboard */,
+				D00023B5195794C700687B12 /* TipCalculatorModel.swift */,
 				D000239F1957886E00687B12 /* Images.xcassets */,
 				D00023961957886E00687B12 /* Supporting Files */,
 			);
@@ -208,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D00023B6195794C700687B12 /* TipCalculatorModel.swift in Sources */,
 				D000239B1957886E00687B12 /* ViewController.swift in Sources */,
 				D00023991957886E00687B12 /* AppDelegate.swift in Sources */,
 			);
@@ -326,6 +330,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Tippr/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -337,6 +342,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Tippr/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
