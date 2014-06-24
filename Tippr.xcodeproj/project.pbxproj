@@ -13,6 +13,7 @@
 		D00023A01957886E00687B12 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D000239F1957886E00687B12 /* Images.xcassets */; };
 		D00023AC1957886E00687B12 /* TipprTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00023AB1957886E00687B12 /* TipprTests.swift */; };
 		D00023B6195794C700687B12 /* TipCalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00023B5195794C700687B12 /* TipCalculatorModel.swift */; };
+		D01CBD4019591B8A0090C60A /* 512px-Solid_black.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = D01CBD3F19591B8A0090C60A /* 512px-Solid_black.svg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		D00023AA1957886E00687B12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D00023AB1957886E00687B12 /* TipprTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipprTests.swift; sourceTree = "<group>"; };
 		D00023B5195794C700687B12 /* TipCalculatorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipCalculatorModel.swift; sourceTree = "<group>"; };
+		D01CBD3F19591B8A0090C60A /* 512px-Solid_black.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "512px-Solid_black.svg.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 		D00023961957886E00687B12 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D01CBD3F19591B8A0090C60A /* 512px-Solid_black.svg.png */,
 				D00023971957886E00687B12 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -193,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D000239E1957886E00687B12 /* Main.storyboard in Resources */,
+				D01CBD4019591B8A0090C60A /* 512px-Solid_black.svg.png in Resources */,
 				D00023A01957886E00687B12 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,6 +407,7 @@
 				D00023B11957886E00687B12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D00023B21957886E00687B12 /* Build configuration list for PBXNativeTarget "TipprTests" */ = {
 			isa = XCConfigurationList;
@@ -411,6 +416,7 @@
 				D00023B41957886E00687B12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,44 +9,50 @@
 import Foundation
 
 class TipCalculatorModel {
-    var subtotal: Double
+    var subtotal: NSDecimalNumber
+    var tipPercent: NSDecimalNumber
     var roundUp: Bool
-    var tipPercent: Double
+
+    let roundingBehavior = NSDecimalNumberHandler.decimalNumberHandlerWithRoundingMode(NSRoundingMode.RoundUp, scale: 2, raiseOnExactness: true, raiseOnOverflow: true, raiseOnUnderflow: true, raiseOnDivideByZero: true)
+    let roundToInteger = NSDecimalNumberHandler.decimalNumberHandlerWithRoundingMode(NSRoundingMode.RoundUp, scale: 0, raiseOnExactness: true, raiseOnOverflow: true, raiseOnUnderflow: true, raiseOnDivideByZero: true)
     
     init() {
-        self.subtotal = 0.0
+        self.subtotal = NSDecimalNumber.zero()
+        self.tipPercent = NSDecimalNumber.zero()
         self.roundUp = false
-        self.tipPercent = 0.18
     }
     
-    func updateSubtotal(subtotal:Double) {
-        self.subtotal = subtotal
+    func setSubtotal(subtotal:Double) {
+        self.subtotal = NSDecimalNumber(double: subtotal)
+    }
+    
+    func setTipPercent(tipPercent:Double) {
+        self.tipPercent = NSDecimalNumber(double: tipPercent)
     }
     
     func setRoundUp(isRoundUp:Bool) {
         self.roundUp = isRoundUp
     }
     
-    func setTipPercent(tipPercent:Double) {
-        self.tipPercent = tipPercent
-    }
-    
     func calculateTip() -> Double {
-        var tip = subtotal * tipPercent
+        var tip = subtotal.decimalNumberByMultiplyingBy(tipPercent, withBehavior: roundingBehavior)
+
         if(roundUp) {
-            var roundedTotal = round(subtotal + tip)
-            return roundedTotal - subtotal
+            var roundedTotal = NSDecimalNumber(double: self.calculateTotal())
+            return roundedTotal.decimalNumberBySubtracting(subtotal, withBehavior: roundingBehavior).doubleValue
         } else {
-            return tip
+            return tip.doubleValue
         }
     }
     
     func calculateTotal() -> Double {
-        var total = subtotal + (subtotal * tipPercent)
+        var tip = subtotal.decimalNumberByMultiplyingBy(tipPercent, withBehavior: roundingBehavior)
+        var total = subtotal.decimalNumberByAdding(tip, withBehavior: roundingBehavior)
+
         if(roundUp) {
-            return round(total)
+            return total.decimalNumberByRoundingAccordingToBehavior(roundToInteger).doubleValue
         } else {
-            return total
+            return total.doubleValue
         }
     }
     

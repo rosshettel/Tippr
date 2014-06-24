@@ -19,12 +19,12 @@ class ViewController: UIViewController {
     @IBOutlet var roundBillToggle : UISwitch
     
     @IBAction func viewTapped(sender : AnyObject) {
-        subtotalTextField.resignFirstResponder()
+//        subtotalTextField.resignFirstResponder()
     }
     
     @IBAction func subtotalUpdated() {
         var subtotal: Double = subtotalTextField.text.bridgeToObjectiveC().doubleValue
-        tipCalc.updateSubtotal(subtotal)
+        tipCalc.setSubtotal(subtotal)
         refreshUI()
     }
     
@@ -41,14 +41,18 @@ class ViewController: UIViewController {
     }
     
     func refreshUI() {
-        tipLabel.text = "$" + String(tipCalc.calculateTip())
-        totalLabel.text = "$" + String(tipCalc.calculateTotal())
+        tipLabel.text = "$" + NSString(format:"%.2f", tipCalc.calculateTip())
+        totalLabel.text = "$" + NSString(format:"%.2f", tipCalc.calculateTotal())
     }
                             
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController.navigationBar.tintColor = UIColor.blackColor()
+        self.navigationController.navigationBar.barTintColor = UIColor.blackColor()
+        self.navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor .whiteColor()]
         // Do any additional setup after loading the view, typically from a nib.
+        tipCalc.setTipPercent(0.18)
+        subtotalTextField.becomeFirstResponder()
         refreshUI()
     }
 

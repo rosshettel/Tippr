@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="V6L-EK-chA">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Tip Calculator-->
+        <!--View Controller - Tippr-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Tippr" customModuleProvider="target" sceneMemberID="viewController">
@@ -30,17 +31,22 @@
                                         <exclude reference="4om-rk-R2u"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="20" y="81" width="93" height="21"/>
                                     <mask key="constraints">
                                         <include reference="4om-rk-R2u"/>
                                         <exclude reference="cge-lj-e1O"/>
                                     </mask>
                                 </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Tm-XL-pDy">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" background="512px-Solid_black.svg.png" disabledBackground="512px-Solid_black.svg.png" translatesAutoresizingMaskIntoConstraints="NO" id="1Tm-XL-pDy">
                                 <rect key="frame" x="192" y="81" width="268" height="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert" returnKeyType="go"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="203" y="77" width="97" height="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="subtotalUpdated" destination="vXZ-lx-hvc" eventType="editingChanged" id="iVJ-FL-CRw"/>
                                 </connections>
@@ -48,10 +54,13 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="BpV-0q-Iih">
                                 <rect key="frame" x="20" y="119" width="229" height="29"/>
                                 <segments>
-                                    <segment title="15%"/>
-                                    <segment title="18%"/>
-                                    <segment title="20%"/>
+                                    <segment title="Cheapass"/>
+                                    <segment title="Alright"/>
+                                    <segment title="Awesome"/>
                                 </segments>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="20" y="115" width="280" height="29"/>
+                                </variation>
                                 <connections>
                                     <action selector="switchTipAmount" destination="vXZ-lx-hvc" eventType="valueChanged" id="WgA-ke-pUl"/>
                                 </connections>
@@ -68,10 +77,16 @@
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="20" y="151" width="24" height="21"/>
+                                </variation>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NB6-BV-hbB">
                                 <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="251" y="250" width="51" height="31"/>
+                                </variation>
                                 <connections>
                                     <action selector="toggleRoundUp" destination="vXZ-lx-hvc" eventType="valueChanged" id="MEC-qV-llH"/>
                                 </connections>
@@ -81,12 +96,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="20" y="255" width="112" height="21"/>
+                                </variation>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tip" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGf-mA-sXe">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="203" y="151" width="97" height="21"/>
+                                </variation>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill Total" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4T0-8U-cNS">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -103,7 +124,8 @@
                                         <exclude reference="Qtk-JL-PCY"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="20" y="181" width="66" height="22"/>
                                     <mask key="constraints">
                                         <include reference="Pha-6r-HSh"/>
                                         <include reference="Qtk-JL-PCY"/>
@@ -115,6 +137,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="203" y="181" width="97" height="22"/>
+                                </variation>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="line" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfc-UN-zjg">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -130,7 +155,8 @@
                                         <exclude reference="krj-En-kIK"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="235" y="175" width="65" height="2"/>
                                     <mask key="constraints">
                                         <include reference="krj-En-kIK"/>
                                     </mask>
@@ -263,7 +289,7 @@
                             <outletCollection property="gestureRecognizers" destination="yJD-cx-E8x" appends="YES" id="rKc-Rb-v80"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Tip Calculator" id="Sia-tg-ddK"/>
+                    <navigationItem key="navigationItem" title="Tippr" id="Sia-tg-ddK"/>
                     <connections>
                         <outlet property="roundBillToggle" destination="NB6-BV-hbB" id="6AC-Bo-Yky"/>
                         <outlet property="selectedTipPercent" destination="BpV-0q-Iih" id="FS4-9V-xuI"/>
@@ -302,4 +328,7 @@
             <point key="canvasLocation" x="477" y="-203"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="512px-Solid_black.svg.png" width="512" height="512"/>
+    </resources>
 </document>
