@@ -12,6 +12,9 @@ your phone becomes a lighthouse beacon to everyone around.
 
 TO DO
 =====
+- add an app icon
+- actually put this in the app store
 - add a setting page, with options for tip amounts
 - perhaps allow tipping calculator for before tax amount?
-- actually put this in the app store
+
+
