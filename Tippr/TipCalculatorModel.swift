@@ -13,8 +13,8 @@ class TipCalculatorModel {
     var tipPercent: NSDecimalNumber
     var roundUp: Bool
 
-    let roundingBehavior = NSDecimalNumberHandler.decimalNumberHandlerWithRoundingMode(NSRoundingMode.RoundUp, scale: 2, raiseOnExactness: true, raiseOnOverflow: true, raiseOnUnderflow: true, raiseOnDivideByZero: true)
-    let roundToInteger = NSDecimalNumberHandler.decimalNumberHandlerWithRoundingMode(NSRoundingMode.RoundUp, scale: 0, raiseOnExactness: true, raiseOnOverflow: true, raiseOnUnderflow: true, raiseOnDivideByZero: true)
+    let roundingBehavior = NSDecimalNumberHandler(roundingMode: NSRoundingMode.RoundUp, scale: 2, raiseOnExactness: true, raiseOnOverflow: true, raiseOnUnderflow: true, raiseOnDivideByZero: true)
+    let roundToInteger = NSDecimalNumberHandler(roundingMode: NSRoundingMode.RoundUp, scale: 0, raiseOnExactness: true, raiseOnOverflow: true, raiseOnUnderflow: true, raiseOnDivideByZero: true)
     
     init() {
         self.subtotal = NSDecimalNumber.zero()
@@ -35,10 +35,10 @@ class TipCalculatorModel {
     }
     
     func calculateTip() -> Double {
-        var tip = subtotal.decimalNumberByMultiplyingBy(tipPercent, withBehavior: roundingBehavior)
+        let tip = subtotal.decimalNumberByMultiplyingBy(tipPercent, withBehavior: roundingBehavior)
 
         if(roundUp) {
-            var roundedTotal = NSDecimalNumber(double: self.calculateTotal())
+            let roundedTotal = NSDecimalNumber(double: self.calculateTotal())
             return roundedTotal.decimalNumberBySubtracting(subtotal, withBehavior: roundingBehavior).doubleValue
         } else {
             return tip.doubleValue
@@ -46,8 +46,8 @@ class TipCalculatorModel {
     }
     
     func calculateTotal() -> Double {
-        var tip = subtotal.decimalNumberByMultiplyingBy(tipPercent, withBehavior: roundingBehavior)
-        var total = subtotal.decimalNumberByAdding(tip, withBehavior: roundingBehavior)
+        let tip = subtotal.decimalNumberByMultiplyingBy(tipPercent, withBehavior: roundingBehavior)
+        let total = subtotal.decimalNumberByAdding(tip, withBehavior: roundingBehavior)
 
         if(roundUp) {
             return total.decimalNumberByRoundingAccordingToBehavior(roundToInteger).doubleValue

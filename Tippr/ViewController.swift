@@ -11,45 +11,49 @@ import UIKit
 class ViewController: UIViewController {
     let tipCalc = TipCalculatorModel()
     let tipAmounts = [0.15, 0.18, 0.20]
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
-    @IBOutlet var subtotalTextField : UITextField
-    @IBOutlet var tipLabel : UILabel
-    @IBOutlet var totalLabel : UILabel
-    @IBOutlet var selectedTipPercent : UISegmentedControl
-    @IBOutlet var roundBillToggle : UISwitch
+    @IBOutlet var subtotalTextField : UITextField!
+    @IBOutlet var tipLabel : UILabel!
+    @IBOutlet var totalLabel : UILabel!
+    @IBOutlet var selectedTipPercent : UISegmentedControl!
+    @IBOutlet var roundBillToggle : UISwitch!
     
     @IBAction func viewTapped(sender : AnyObject) {
 //        subtotalTextField.resignFirstResponder()
     }
     
     @IBAction func subtotalUpdated() {
-        var subtotal: Double = subtotalTextField.text.bridgeToObjectiveC().doubleValue
+        let subtotal = NSString(string: subtotalTextField.text!).doubleValue
         tipCalc.setSubtotal(subtotal)
         refreshUI()
     }
     
     @IBAction func toggleRoundUp() {
-        var isRoundUp: Bool = roundBillToggle.on
+        let isRoundUp: Bool = roundBillToggle.on
         tipCalc.setRoundUp(isRoundUp)
         refreshUI()
     }
     
     @IBAction func switchTipAmount() {
-        var selectedTip = tipAmounts[selectedTipPercent.selectedSegmentIndex]
+        let selectedTip = tipAmounts[selectedTipPercent.selectedSegmentIndex]
         tipCalc.setTipPercent(selectedTip)
         refreshUI()
     }
     
     func refreshUI() {
-        tipLabel.text = "$" + NSString(format:"%.2f", tipCalc.calculateTip())
-        totalLabel.text = "$" + NSString(format:"%.2f", tipCalc.calculateTotal())
+        tipLabel.text = "$" + (NSString(format:"%.2f", tipCalc.calculateTip()) as String)
+        totalLabel.text = "$" + (NSString(format:"%.2f", tipCalc.calculateTotal()) as String)
     }
                             
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController.navigationBar.tintColor = UIColor.blackColor()
-        self.navigationController.navigationBar.barTintColor = UIColor.blackColor()
-        self.navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor .whiteColor()]
+        self.navigationController!.navigationBar.tintColor = UIColor.blackColor()
+        self.navigationController!.navigationBar.barTintColor = UIColor.blackColor()
+        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor .whiteColor()]
         // Do any additional setup after loading the view, typically from a nib.
         tipCalc.setTipPercent(0.18)
         subtotalTextField.becomeFirstResponder()
