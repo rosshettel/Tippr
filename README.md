@@ -9,6 +9,7 @@ amounts, with an optional round up button for when your bill is close to the nea
 And then it should be dark themed, because how embarrasing is it when you're at a dark bar/restaurant and 
 your phone becomes a lighthouse beacon to everyone around.
 
+![Screenshot](https://raw.githubusercontent.com/rosshettel/Tippr/master/Tippr.png)
 
 TO DO
 =====
