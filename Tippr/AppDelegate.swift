@@ -2,16 +2,22 @@
 //  AppDelegate.swift
 //  Tippr
 //
-//  Created by Ross Hettel on 6/22/14.
-//  Copyright (c) 2014 Ross Hettel. All rights reserved.
+//  Created by Ross Hettel on 10/4/15.
+//  Copyright © 2015 Ross Hettel. All rights reserved.
 //
 
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-                            
+
     var window: UIWindow?
+
+
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Override point for customization after application launch.
+        return true
+    }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

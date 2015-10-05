@@ -2,11 +2,12 @@
 //  TipprTests.swift
 //  TipprTests
 //
-//  Created by Ross Hettel on 6/22/14.
-//  Copyright (c) 2014 Ross Hettel. All rights reserved.
+//  Created by Ross Hettel on 10/4/15.
+//  Copyright © 2015 Ross Hettel. All rights reserved.
 //
 
 import XCTest
+@testable import Tippr
 
 class TipprTests: XCTestCase {
     
@@ -22,12 +23,12 @@ class TipprTests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measureBlock {
             // Put the code you want to measure the time of here.
         }
     }
