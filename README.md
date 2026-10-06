@@ -34,7 +34,7 @@ It opens full screen from the home screen icon, like a regular app. On Android, 
 
 - **Run locally:** `python3 -m http.server 8123 -d web`, then open http://localhost:8123.
 - **Deploy:** every push to `master` that changes `web/` publishes it to GitHub Pages (`.github/workflows/pages.yml`).
-- **Icons:** `scripts/make-icon.swift` renders the icon. Its header comment has the commands for resizing it into `web/icons/`.
+- **Icons:** `scripts/icon.html` is the icon, drawn with the app's fonts and colors. Its header comment has the commands to render it with headless Chrome and resize it into `web/icons/`.
 
 ## To do
 
