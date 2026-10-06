@@ -35,8 +35,6 @@ It opens full screen from the home screen icon, like a regular app. On Android, 
 - **Deploy:** every push to `master` that changes `web/` publishes it to GitHub Pages (`.github/workflows/pages.yml`).
 - **Icons:** `scripts/make-icon.swift` renders the icon. Its header comment has the commands for resizing it into `web/icons/`.
 
-The original Swift app is still in `Tippr/` (open `Tippr.xcodeproj` in Xcode) until the web version replaces it.
-
 ## To do
 
 - add a settings page, with options for tip amounts
