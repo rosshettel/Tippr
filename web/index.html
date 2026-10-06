@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tippr</title>
 <meta name="description" content="A very simple, dark tip calculator.">
-<meta name="theme-color" content="#101010">
+<meta name="theme-color" content="#0a0a0a">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Tippr">
@@ -13,18 +13,28 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" crossorigin>
 <style>
-  /* Colors and sizes from the original iOS 7 app (Main.storyboard and its screenshot). */
+  /* Colors and sizes from the "Tip Calculator" design. */
   :root {
-    --bg: #000;
-    --bar: #101010;
-    --text: #fff;
-    --tint: #007aff;
-    --tint-pressed: rgba(0, 122, 255, .25);
-    --on: #4cd964;
-    --key: #656565;
-    --key-dark: #3b3b3b;
-    --key-gap: #3f3f3f;
+    --bg: #0a0a0a;
+    --text: #f2efe6;
+    --text-2: #d8d5cc;
+    --label: #a9a69e;
+    --muted: #8d8a83;
+    --faint: #6f6c66;
+    --empty: #55524d;
+    --accent: #ff6b3d;
+    --accent-glow: rgba(255, 107, 61, .18);
+    --card: #131313;
+    --card-line: #222;
+    --pill: #1d1d1d;
+    --key: #1a1a1a;
+    --key-pressed: #2a2a2a;
+    --off: #333;
+    --mono: 'Geist Mono', ui-monospace, Menlo, monospace;
     color-scheme: dark;
   }
   * { box-sizing: border-box; }
@@ -35,7 +45,7 @@
     overscroll-behavior: none;
     background: var(--bg);
     color: var(--text);
-    font: 17px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font: 15px 'Geist', -apple-system, 'Helvetica Neue', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
     -webkit-user-select: none;
@@ -48,117 +58,139 @@
     max-width: 430px;
     height: 100dvh;
     margin: 0 auto;
+    padding-top: env(safe-area-inset-top);
     display: flex;
     flex-direction: column;
   }
+  .spacer { flex: 1; min-height: 0; }
 
-  /* Nav bar */
-  .bar {
-    flex: none;
-    background: var(--bar);
-    /* Extra top space keeps the title out of the blur iOS 26 draws under the
-       status bar. */
-    padding: calc(env(safe-area-inset-top) + 24px) 20px 12px;
-    text-align: center;
-    font-weight: 500;
-    line-height: 20px;
+  .row { display: flex; justify-content: space-between; align-items: center; padding: 0 26px; }
+  .label { color: var(--label); }
+  .amount {
+    font-size: 34px;
+    font-weight: 400;
+    letter-spacing: -.03em;
+    font-variant-numeric: tabular-nums;
   }
 
-  /* Form */
-  .form { flex: none; padding: 4px 20px 0; }
-  .row { display: flex; align-items: center; justify-content: space-between; }
-  .subtotal-row { height: 30px; }
-  .subtotal { display: flex; align-items: center; height: 30px; }
-  .caret {
-    width: 2px;
-    height: 20px;
-    margin-left: 1px;
-    background: var(--tint);
-    animation: blink 1s steps(1) infinite;
-  }
-  @keyframes blink { 50% { opacity: 0; } }
-
-  .segments {
-    display: flex;
-    height: 29px;
-    margin-top: 8px;
-    border: 1px solid var(--tint);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .segment {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--tint);
+  /* Bill */
+  .bill-label { display: flex; align-items: center; gap: 10px; }
+  .clear {
+    position: relative;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--pill);
+    color: var(--text-2);
     font-size: 13px;
     cursor: pointer;
   }
-  .segment + .segment { border-left: 1px solid var(--tint); }
-  .segment:active { background: var(--tint-pressed); }
-  .segment[aria-checked="true"] { background: var(--tint); color: var(--text); }
+  .clear:active { background: var(--key-pressed); }
+  #bill.empty { color: var(--empty); }
 
-  .tip-row { height: 21px; margin-top: 8px; }
-  .rule { width: 65px; height: 2px; margin: 3px 0 0 auto; background: var(--text); }
-  .total-row { height: 22px; margin-top: 4px; }
-
-  .round-row { height: 31px; margin-top: 47px; }
-  .switch {
+  /* Tip card */
+  .card {
+    margin: 14px 16px 0;
+    padding: 14px 12px 14px 18px;
+    border-radius: 18px;
+    background: var(--card);
+    border: 1px solid var(--card-line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .tip { display: flex; flex-direction: column; gap: 3px; }
+  #tip-label { font-size: 12px; color: var(--muted); }
+  #tip { font-family: var(--mono); font-size: 20px; font-weight: 500; color: var(--accent); }
+  .round {
     position: relative;
-    width: 51px;
-    height: 31px;
-    border-radius: 15.5px;
-    box-shadow: inset 0 0 0 1.5px var(--tint);
-    transition: background .25s, box-shadow .25s;
+    height: 48px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 12px;
+    border: 1px solid var(--off);
+    color: var(--text-2);
+    font-size: 15px;
+    font-weight: 500;
     cursor: pointer;
   }
-  .switch::after {
-    content: '';
+  .round span { font-family: var(--mono); }
+  .round:active { background: var(--key-pressed); }
+  .round[aria-checked="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+  .total-row { align-items: baseline; padding-top: 14px; }
+
+  /* Tip slider */
+  .slider-wrap { padding: 18px 26px 14px; }
+  .slider { position: relative; height: 44px; touch-action: none; cursor: pointer; outline: none; }
+  .rail, .fill { position: absolute; left: 0; top: 20px; height: 4px; border-radius: 2px; }
+  .rail { right: 0; background: var(--card-line); }
+  .fill { background: var(--accent); }
+  .dot {
     position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 27px;
-    height: 27px;
+    top: 18px;
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
     border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, .3), 0 0 0 .5px rgba(0, 0, 0, .1);
-    transition: transform .25s;
+    background: var(--off);
   }
-  .switch[aria-checked="true"] { background: var(--on); box-shadow: inset 0 0 0 1.5px var(--on); }
-  .switch[aria-checked="true"]::after { transform: translateX(20px); }
+  .dot.on { background: var(--accent); }
+  .thumb {
+    position: absolute;
+    top: 8px;
+    width: 28px;
+    height: 28px;
+    margin-left: -14px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 6px var(--accent-glow);
+  }
+  .slider:focus-visible .thumb { box-shadow: 0 0 0 6px var(--accent-glow), 0 0 0 8px var(--accent); }
+  .fill, .thumb { transition: left .2s ease, width .2s ease; }
+  .slider.dragging .fill, .slider.dragging .thumb { transition-duration: .08s; transition-timing-function: linear; }
+  .stops { position: relative; height: 16px; margin-top: 2px; }
+  .stop {
+    position: absolute;
+    top: -6px;
+    padding: 6px;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--faint);
+    cursor: pointer;
+  }
+  .stop[aria-checked="true"] { color: var(--accent); }
 
-  .spacer { flex: 1; min-height: 0; }
-
-  /* Keypad: the iOS 7 dark decimal pad */
+  /* Keypad */
   .keys {
-    flex: none;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1px;
-    padding-top: 1px;
-    padding-bottom: env(safe-area-inset-bottom);
-    background: var(--key-gap);
+    gap: 10px;
+    padding: 0 16px max(env(safe-area-inset-bottom), 20px);
   }
   .key {
-    height: 53px;
+    position: relative;
+    height: 64px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-radius: 16px;
     background: var(--key);
-    font-size: 25px;
+    font-size: 28px;
     font-weight: 300;
-    line-height: 1;
     cursor: pointer;
   }
-  .key small { font-size: 10px; font-weight: 500; letter-spacing: .1em; margin-top: 1px; }
-  .key.dark { background: var(--key-dark); }
-  .key:active { background: var(--key-dark); }
-  .key.dark:active { background: var(--key); }
+  .key.plain { background: transparent; }
+  .key:active { background: var(--key-pressed); }
+  @media (max-height: 620px) {
+    .key { height: 54px; }
+  }
   @media (hover: hover) {
-    .segment:not([aria-checked="true"]):hover { background: rgba(0, 122, 255, .12); }
-    .key:hover { filter: brightness(1.1); }
+    .key:hover, .clear:hover, .round:not([aria-checked="true"]):hover { filter: brightness(1.25); }
+    .stop:hover { color: var(--text-2); }
   }
 
   /* Controls wrap a hidden <input switch>; tapping it plays the iOS toggle haptic. */
@@ -167,69 +199,85 @@
 </head>
 <body>
 <main class="app">
-  <header class="bar">Tippr</header>
-
-  <section class="form">
-    <div class="row subtotal-row">
-      <span>Bill Subtotal</span>
-      <span class="subtotal"><span id="subtotal"></span><span class="caret"></span></span>
-    </div>
-    <div class="segments" id="segments" role="radiogroup" aria-label="Tip amount"></div>
-    <div class="row tip-row"><span>Tip</span><span id="tip">$0.00</span></div>
-    <div class="rule"></div>
-    <div class="row total-row"><span>Bill Total</span><span id="total">$0.00</span></div>
-    <div class="row round-row">
-      <span>Round bill up?</span>
-      <label class="switch" id="round" role="switch" aria-checked="false" aria-label="Round bill up"><input type="checkbox" switch tabindex="-1"></label>
-    </div>
-  </section>
-
   <div class="spacer"></div>
+
+  <div class="row">
+    <div class="bill-label">
+      <span class="label">Bill</span>
+      <label class="clear" id="clear" role="button">Clear<input type="checkbox" switch tabindex="-1"></label>
+    </div>
+    <span class="amount" id="bill"></span>
+  </div>
+
+  <div class="card">
+    <div class="tip">
+      <span id="tip-label"></span>
+      <span id="tip" aria-live="polite"></span>
+    </div>
+    <label class="round" id="round" role="switch" aria-checked="false" aria-label="Round up">Round up <span aria-hidden="true">↑</span><input type="checkbox" switch tabindex="-1"></label>
+  </div>
+
+  <div class="row total-row">
+    <span class="label">Total</span>
+    <span class="amount" id="total"></span>
+  </div>
+
+  <div class="slider-wrap">
+    <div class="slider" id="slider" role="slider" tabindex="0" aria-label="Tip percentage">
+      <div class="rail"></div>
+      <div class="fill" id="fill"></div>
+      <div id="dots"></div>
+      <div class="thumb" id="thumb"></div>
+    </div>
+    <div class="stops" id="stops" role="radiogroup" aria-label="Tip percentage"></div>
+  </div>
 
   <section class="keys" id="keys"></section>
 </main>
 
 <script>
-const TIPS = [
-  { name: 'Cheapass', percent: 15 },
-  { name: 'Alright', percent: 18 },
-  { name: 'Awesome', percent: 20 },
-];
+const PERCENTS = [10, 15, 20, 25, 30, 35];
+const MAX_DIGITS = 7; // up to $99,999.99
 
-const state = { subtotal: '', percent: 18, roundUp: false };
+// The bill is typed in cents, like a card terminal: 6, 7, 6, 8 reads $67.68.
+const state = { digits: '', tipIndex: PERCENTS.indexOf(20), roundUp: false };
 
 const $ = id => document.getElementById(id);
-const dollars = cents => '$' + (cents / 100).toFixed(2);
+const dollars = cents => '$' + (cents / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const stopLeft = i => (i / (PERCENTS.length - 1) * 100) + '%';
 
 // --- Model -----------------------------------------------------------------
-// Same rules as TipCalculatorModel.swift, in whole cents so the rounding is exact:
-// the tip rounds up to the cent, and "round up" lifts the total to the next dollar
-// and makes the tip the difference.
+// In whole cents so the rounding is exact: the tip rounds up to the cent, and
+// "round up" lifts the total to the next dollar and makes the tip the difference.
 const ceilDiv = (a, b) => Math.floor((a + b - 1) / b);
 
-function toCents(text) {
-  const [whole, frac = ''] = text.split('.');
-  return (parseInt(whole, 10) || 0) * 100 + (parseInt(frac.padEnd(2, '0'), 10) || 0);
-}
-
 function calculate() {
-  const subtotal = toCents(state.subtotal);
-  const tip = ceilDiv(subtotal * state.percent, 100);
-  let total = subtotal + tip;
-  if (state.roundUp) total = ceilDiv(total, 100) * 100;
-  return { tip: total - subtotal, total };
+  const bill = parseInt(state.digits || '0', 10);
+  const tip = ceilDiv(bill * PERCENTS[state.tipIndex], 100);
+  let total = bill + tip;
+  const rounded = state.roundUp && bill > 0;
+  if (rounded) total = ceilDiv(total, 100) * 100;
+  return { bill, tip: total - bill, total, rounded };
 }
 
 // --- Input -----------------------------------------------------------------
 function press(key) {
-  let s = state.subtotal;
+  let s = state.digits;
   if (key === 'back') s = s.slice(0, -1);
-  else if (key === '.') { if (!s.includes('.')) s += '.'; }
-  else if (/\.\d\d$/.test(s)) return; // cents only
-  else if (s === '0') s = key;
-  else if (s.replace('.', '').length < 8) s += key;
-  state.subtotal = s;
+  else for (const d of key) {
+    if (s === '' && d === '0') continue; // no leading zeros
+    if (s.length < MAX_DIGITS) s += d;
+  }
+  state.digits = s;
   render();
+}
+
+function setTip(i) {
+  i = Math.min(PERCENTS.length - 1, Math.max(0, i));
+  if (i === state.tipIndex) return false;
+  state.tipIndex = i;
+  render();
+  return true;
 }
 
 // Controls are labels around a hidden <input switch>. Safari has no vibration API,
@@ -243,53 +291,84 @@ function onToggle(label, handler) {
   });
 }
 
-const KEYS = [
-  ['1', ''], ['2', 'ABC'], ['3', 'DEF'],
-  ['4', 'GHI'], ['5', 'JKL'], ['6', 'MNO'],
-  ['7', 'PQRS'], ['8', 'TUV'], ['9', 'WXYZ'],
-  ['.', ''], ['0', ''], ['back', ''],
-];
-const BACK_ICON = '<svg width="23" height="17" viewBox="0 0 23 17"><path d="M7 0H21a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H7L0 8.5Z" fill="#fff"/><path d="M10.5 5l7 7M17.5 5l-7 7" stroke="#3b3b3b" stroke-width="1.6" stroke-linecap="round"/></svg>';
-
-for (const [k, letters] of KEYS) {
+for (const k of ['1', '2', '3', '4', '5', '6', '7', '8', '9', '00', '0', 'back']) {
   const key = document.createElement('label');
-  key.className = 'key' + (k === '.' || k === 'back' ? ' dark' : '');
-  key.innerHTML = (k === 'back' ? BACK_ICON : k) + (letters ? `<small>${letters}</small>` : '') +
-    '<input type="checkbox" switch tabindex="-1">';
+  key.className = 'key' + (k === '00' || k === 'back' ? ' plain' : '');
+  key.innerHTML = (k === 'back' ? '⌫' : k) + '<input type="checkbox" switch tabindex="-1">';
   key.setAttribute('role', 'button');
-  key.setAttribute('aria-label', k === 'back' ? 'Delete' : k === '.' ? 'Decimal point' : k);
+  key.setAttribute('aria-label', k === 'back' ? 'Delete' : k === '00' ? 'Double zero' : k);
   onToggle(key, () => press(k));
   $('keys').append(key);
 }
 
-const segments = TIPS.map(({ name, percent }) => {
-  const seg = document.createElement('label');
-  seg.className = 'segment';
-  seg.setAttribute('role', 'radio');
-  seg.setAttribute('aria-label', `${name}, ${percent}%`);
-  seg.innerHTML = name + '<input type="checkbox" switch tabindex="-1">';
-  onToggle(seg, () => { state.percent = percent; render(); });
-  $('segments').append(seg);
-  return seg;
+onToggle($('clear'), () => { state.digits = ''; render(); });
+onToggle($('round'), () => { state.roundUp = !state.roundUp; render(); });
+
+const dots = PERCENTS.map((_, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'dot';
+  dot.style.left = stopLeft(i);
+  $('dots').append(dot);
+  return dot;
 });
 
-onToggle($('round'), () => { state.roundUp = !state.roundUp; render(); });
+const stops = PERCENTS.map((percent, i) => {
+  const stop = document.createElement('label');
+  stop.className = 'stop';
+  stop.style.left = stopLeft(i);
+  stop.setAttribute('role', 'radio');
+  stop.innerHTML = percent + '%<input type="checkbox" switch tabindex="-1">';
+  onToggle(stop, () => setTip(i));
+  $('stops').append(stop);
+  return stop;
+});
+
+// Dragging snaps to the nearest stop. iOS can't tick here (no switch under the
+// finger), so only Android buzzes as the thumb crosses a stop.
+const slider = $('slider');
+function tipFromX(x) {
+  const r = slider.getBoundingClientRect();
+  const t = Math.min(1, Math.max(0, (x - r.left) / r.width));
+  if (setTip(Math.round(t * (PERCENTS.length - 1)))) navigator.vibrate?.(5);
+}
+slider.addEventListener('pointerdown', e => {
+  slider.setPointerCapture(e.pointerId);
+  slider.classList.add('dragging');
+  tipFromX(e.clientX);
+});
+slider.addEventListener('pointermove', e => {
+  if (slider.hasPointerCapture(e.pointerId)) tipFromX(e.clientX);
+});
+for (const type of ['pointerup', 'pointercancel']) {
+  slider.addEventListener(type, () => slider.classList.remove('dragging'));
+}
 
 // --- Render ----------------------------------------------------------------
 function render() {
-  const { tip, total } = calculate();
-  $('subtotal').textContent = state.subtotal;
+  const { bill, tip, total, rounded } = calculate();
+  const i = state.tipIndex, percent = PERCENTS[i];
+  $('bill').textContent = dollars(bill);
+  $('bill').classList.toggle('empty', !state.digits);
+  $('tip-label').textContent = rounded ? `Tip · ${(tip / bill * 100).toFixed(1)}% after rounding` : `Tip at ${percent}%`;
   $('tip').textContent = dollars(tip);
   $('total').textContent = dollars(total);
-  segments.forEach((seg, i) => seg.setAttribute('aria-checked', TIPS[i].percent === state.percent));
   $('round').setAttribute('aria-checked', state.roundUp);
+  $('fill').style.width = $('thumb').style.left = stopLeft(i);
+  dots.forEach((dot, j) => dot.classList.toggle('on', j <= i));
+  stops.forEach((stop, j) => stop.setAttribute('aria-checked', j === i));
+  slider.setAttribute('aria-valuenow', percent);
+  slider.setAttribute('aria-valuetext', percent + '%');
 }
 
 // Hardware keyboard (handy on a laptop).
 window.addEventListener('keydown', e => {
-  if (/^[0-9.]$/.test(e.key)) press(e.key);
+  if (/^[0-9]$/.test(e.key)) press(e.key);
   else if (e.key === 'Backspace') press('back');
-  else if (e.key === 'Escape') { state.subtotal = ''; render(); }
+  else if (e.key === 'Escape') { state.digits = ''; render(); }
+  else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') setTip(state.tipIndex - 1);
+  else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') setTip(state.tipIndex + 1);
+  else return;
+  e.preventDefault();
 });
 
 // iOS only applies :active styles when a touch listener exists.

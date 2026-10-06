@@ -1,5 +1,5 @@
 // Offline support: serve the app from cache, refreshing the cache in the background.
-const CACHE = 'tippr-v1';
+const CACHE = 'tippr-v2';
 const SHELL = [
   './',
   './index.html',
@@ -8,6 +8,9 @@ const SHELL = [
   './icons/icon-192.png',
   './icons/icon-512.png',
 ];
+
+// The app's own files, plus the Geist fonts from Google Fonts.
+const CACHED_ORIGINS = [self.location.origin, 'https://fonts.googleapis.com', 'https://fonts.gstatic.com'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)));
@@ -24,7 +27,7 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   const req = event.request;
-  if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
+  if (req.method !== 'GET' || !CACHED_ORIGINS.includes(new URL(req.url).origin)) return;
 
   // Stale-while-revalidate: answer from cache right away, update it for next launch.
   const fresh = caches.open(CACHE).then(cache =>
