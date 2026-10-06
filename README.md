@@ -1,21 +1,43 @@
-Tippr
-=====
+# Tippr
 
-A very simple, useful (to me) tipping app. Written in Swift.
+A very simple, useful (to me) tip calculator. It works offline once installed.
 
-All I've wanted from a tip calculator app is the ability to quickly calculate the 3 common tip 
+All I've wanted from a tip calculator app is the ability to quickly calculate the 3 common tip
 amounts, with an optional round up button for when your bill is close to the nearest dollar.
 
-And then it should be dark themed, because how embarrasing is it when you're at a dark bar/restaurant and 
+And then it should be dark themed, because how embarrassing is it when you're at a dark bar/restaurant and
 your phone becomes a lighthouse beacon to everyone around.
 
-![Screenshot](https://raw.githubusercontent.com/rosshettel/Tippr/master/Tippr.png)
+<img src="docs/screenshot.png" alt="Tippr showing a $67.68 bill with an 18% tip of $12.19 and a total of $79.87" width="300">
 
-TO DO
-=====
-- add an app icon
-- actually put this in the app store
-- add a setting page, with options for tip amounts
+**https://rosshettel.github.io/Tippr/**
+
+## Install on your iPhone
+
+1. Open the link above in **Safari**.
+2. Tap the **Share** button. On iOS 26 it's in the **⋯** menu next to the address bar.
+3. Tap **Add to Home Screen**. You may need to tap **View More** to find it. Then tap **Add**.
+
+It opens full screen from the home screen icon, like a regular app. On Android, open the link in Chrome and choose **Add to Home screen** from the menu.
+
+## How it works
+
+- **Tips:** Cheapass is 15%, Alright 18% and Awesome 20%. The tip rounds up to the cent. **Round bill up?** raises the total to the next whole dollar and makes the tip the difference. The math is done in whole cents, so it's exact.
+- **Design:** a port of the original 2014 iOS 7 app, keypad included.
+- **Offline:** `web/sw.js` caches the page and icons, so the app opens with no signal. When you change the list of cached files, bump `CACHE` in `sw.js`. Edits to existing files show up on the second launch after a deploy.
+- **Haptics:** Safari has no vibration API, so each key, tip segment and the round-up switch is a `<label>` around a hidden `<input type="checkbox" switch>`. When a finger toggles a switch, iOS 18+ plays its toggle tick. Flipping the switch from code doesn't tick, so the tap has to land on the label. This is unofficial and may stop working in a future iOS. Android uses `navigator.vibrate`.
+
+## Development
+
+`web/` is plain HTML, CSS and JS with no build step.
+
+- **Run locally:** `python3 -m http.server 8123 -d web`, then open http://localhost:8123.
+- **Deploy:** every push to `master` that changes `web/` publishes it to GitHub Pages (`.github/workflows/pages.yml`).
+- **Icons:** `scripts/make-icon.swift` renders the icon. Its header comment has the commands for resizing it into `web/icons/`.
+
+The original Swift app is still in `Tippr/` (open `Tippr.xcodeproj` in Xcode) until the web version replaces it.
+
+## To do
+
+- add a settings page, with options for tip amounts
 - perhaps allow tipping calculator for before tax amount?
-
-
